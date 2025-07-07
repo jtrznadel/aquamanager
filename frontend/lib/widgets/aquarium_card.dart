@@ -41,16 +41,61 @@ class AquariumCard extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               Text(
-                'Wymiary: ${aquarium.lengthCm}×${aquarium.widthCm}×${aquarium.heightCm} cm',
+                'Typ: ${aquarium.waterType}',
                 style: TextStyle(color: Colors.grey[600]),
               ),
               const SizedBox(height: 4),
               Text(
-                'Objętość: ${aquarium.volumeLiters}L',
+                'Pojemność: ${aquarium.capacity.toStringAsFixed(0)}L',
                 style: TextStyle(
                   color: Colors.blue[700],
                   fontWeight: FontWeight.w500,
                 ),
+              ),
+              if (aquarium.temperature != null) ...[
+                const SizedBox(height: 4),
+                Text(
+                  'Temperatura: ${aquarium.temperature!.toStringAsFixed(1)}°C',
+                  style: TextStyle(color: Colors.grey[600]),
+                ),
+              ],
+              if (aquarium.ph != null) ...[
+                const SizedBox(height: 4),
+                Text(
+                  'pH: ${aquarium.ph!.toStringAsFixed(1)}',
+                  style: TextStyle(color: Colors.grey[600]),
+                ),
+              ],
+              const SizedBox(height: 4),
+              Row(
+                children: [
+                  Icon(
+                    Icons.pets,
+                    size: 16,
+                    color: Colors.grey[600],
+                  ),
+                  const SizedBox(width: 4),
+                  Text(
+                    '${aquarium.fishCount} ryb',
+                    style: TextStyle(color: Colors.grey[600]),
+                  ),
+                  const Spacer(),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: aquarium.status == 'healthy' ? Colors.green[100] : Colors.orange[100],
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      aquarium.status == 'healthy' ? 'Zdrowe' : aquarium.status,
+                      style: TextStyle(
+                        color: aquarium.status == 'healthy' ? Colors.green[700] : Colors.orange[700],
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const Spacer(),
               Align(

@@ -20,16 +20,15 @@ class _AddFishDialogState extends State<AddFishDialog> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _speciesController = TextEditingController();
-  final _quantityController = TextEditingController(text: '1');
-  final _notesController = TextEditingController();
+  final _ageController = TextEditingController();
+  String _selectedHealth = 'good';
   bool isLoading = false;
 
   @override
   void dispose() {
     _nameController.dispose();
     _speciesController.dispose();
-    _quantityController.dispose();
-    _notesController.dispose();
+    _ageController.dispose();
     super.dispose();
   }
 
@@ -41,9 +40,9 @@ class _AddFishDialogState extends State<AddFishDialog> {
     final fish = Fish(
       name: _nameController.text,
       species: _speciesController.text,
-      quantity: int.parse(_quantityController.text),
-      notes: _notesController.text.isEmpty ? null : _notesController.text,
       aquariumId: widget.aquariumId,
+      age: _ageController.text.isEmpty ? null : int.tryParse(_ageController.text),
+      health: _selectedHealth,
     );
 
     final newFish = await ApiService.addFish(fish);
@@ -104,29 +103,42 @@ class _AddFishDialogState extends State<AddFishDialog> {
               ),
               const SizedBox(height: 16),
               TextFormField(
-                controller: _quantityController,
+                controller: _ageController,
                 decoration: const InputDecoration(
-                  labelText: 'Ilość',
-                  prefixIcon: Icon(Icons.numbers),
+                  labelText: 'Wiek (opcjonalnie)',
+                  prefixIcon: Icon(Icons.calendar_today),
                 ),
                 keyboardType: TextInputType.number,
                 validator: (value) {
-                  if (value?.isEmpty ?? true) return 'Wymagane';
-                  final quantity = int.tryParse(value!);
-                  if (quantity == null || quantity <= 0) {
-                    return 'Podaj poprawną ilość';
+                  if (value?.isNotEmpty ?? false) {
+                    final age = int.tryParse(value!);
+                    if (age == null || age < 0) {
+                      return 'Podaj poprawny wiek';
+                    }
                   }
                   return null;
                 },
               ),
               const SizedBox(height: 16),
-              TextFormField(
-                controller: _notesController,
+              DropdownButtonFormField<String>(
+                value: _selectedHealth,
                 decoration: const InputDecoration(
-                  labelText: 'Notatki (opcjonalne)',
-                  prefixIcon: Icon(Icons.note),
+                  labelText: 'Stan zdrowia',
+                  prefixIcon: Icon(Icons.health_and_safety),
                 ),
-                maxLines: 3,
+                items: const [
+                  DropdownMenuItem(value: 'poor', child: Text('Słaby')),
+                  DropdownMenuItem(value: 'fair', child: Text('Przeciętny')),
+                  DropdownMenuItem(value: 'good', child: Text('Dobry')),
+                  DropdownMenuItem(value: 'excellent', child: Text('Doskonały')),
+                ],
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    setState(() {
+                      _selectedHealth = newValue;
+                    });
+                  }
+                },
               ),
             ],
           ),

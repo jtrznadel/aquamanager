@@ -1,19 +1,23 @@
 class Aquarium {
   final int? id;
   final String name;
-  final int lengthCm;
-  final int widthCm;
-  final int heightCm;
-  final int volumeLiters;
+  final double capacity;
+  final String waterType;
+  final double? temperature;
+  final double? ph;
+  final int fishCount;
+  final String status;
   final DateTime? createdAt;
 
   Aquarium({
     this.id,
     required this.name,
-    required this.lengthCm,
-    required this.widthCm,
-    required this.heightCm,
-    required this.volumeLiters,
+    required this.capacity,
+    required this.waterType,
+    this.temperature,
+    this.ph,
+    this.fishCount = 0,
+    this.status = 'healthy',
     this.createdAt,
   });
 
@@ -21,23 +25,34 @@ class Aquarium {
     return Aquarium(
       id: json['id'],
       name: json['name'],
-      lengthCm: json['length_cm'],
-      widthCm: json['width_cm'],
-      heightCm: json['height_cm'],
-      volumeLiters: json['volume_liters'],
-      createdAt: json['created_at'] != null
-          ? DateTime.parse(json['created_at'])
+      capacity: _parseDouble(json['capacity']),
+      waterType: json['waterType'] ?? 'freshwater',
+      temperature: _parseDouble(json['temperature']),
+      ph: _parseDouble(json['ph']),
+      fishCount: json['fishCount'] ?? 0,
+      status: json['status'] ?? 'healthy',
+      createdAt: json['createdAt'] != null
+          ? DateTime.parse(json['createdAt'])
           : null,
     );
+  }
+
+  static double _parseDouble(dynamic value) {
+    if (value == null) return 0.0;
+    if (value is double) return value;
+    if (value is int) return value.toDouble();
+    if (value is String) return double.tryParse(value) ?? 0.0;
+    return 0.0;
   }
 
   Map<String, dynamic> toJson() {
     return {
       'name': name,
-      'length_cm': lengthCm,
-      'width_cm': widthCm,
-      'height_cm': heightCm,
-      'volume_liters': volumeLiters,
+      'capacity': capacity,
+      'waterType': waterType,
+      'temperature': temperature,
+      'ph': ph,
+      'status': status,
     };
   }
 }

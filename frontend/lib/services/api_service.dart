@@ -13,8 +13,11 @@ class ApiService {
     try {
       final response = await http.get(Uri.parse('$baseUrl/aquariums'));
       if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
-        return data.map((json) => Aquarium.fromJson(json)).toList();
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        if (responseData['success'] == true && responseData['data'] != null) {
+          final List<dynamic> data = responseData['data'];
+          return data.map((json) => Aquarium.fromJson(json)).toList();
+        }
       }
       return [];
     } catch (e) {
@@ -31,7 +34,10 @@ class ApiService {
         body: json.encode(aquarium.toJson()),
       );
       if (response.statusCode == 201) {
-        return Aquarium.fromJson(json.decode(response.body));
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        if (responseData['success'] == true && responseData['data'] != null) {
+          return Aquarium.fromJson(responseData['data']);
+        }
       }
       return null;
     } catch (e) {
@@ -46,8 +52,11 @@ class ApiService {
       final response =
           await http.get(Uri.parse('$baseUrl/aquariums/$aquariumId/fish'));
       if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
-        return data.map((json) => Fish.fromJson(json)).toList();
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        if (responseData['success'] == true && responseData['data'] != null) {
+          final List<dynamic> data = responseData['data'];
+          return data.map((json) => Fish.fromJson(json)).toList();
+        }
       }
       return [];
     } catch (e) {
@@ -64,7 +73,10 @@ class ApiService {
         body: json.encode(fish.toJson()),
       );
       if (response.statusCode == 201) {
-        return Fish.fromJson(json.decode(response.body));
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        if (responseData['success'] == true && responseData['data'] != null) {
+          return Fish.fromJson(responseData['data']);
+        }
       }
       return null;
     } catch (e) {
@@ -79,8 +91,11 @@ class ApiService {
       final response =
           await http.get(Uri.parse('$baseUrl/aquariums/$aquariumId/tasks'));
       if (response.statusCode == 200) {
-        final List<dynamic> data = json.decode(response.body);
-        return data.map((json) => Task.fromJson(json)).toList();
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        if (responseData['success'] == true && responseData['data'] != null) {
+          final List<dynamic> data = responseData['data'];
+          return data.map((json) => Task.fromJson(json)).toList();
+        }
       }
       return [];
     } catch (e) {
@@ -97,7 +112,10 @@ class ApiService {
         body: json.encode(task.toJson()),
       );
       if (response.statusCode == 201) {
-        return Task.fromJson(json.decode(response.body));
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        if (responseData['success'] == true && responseData['data'] != null) {
+          return Task.fromJson(responseData['data']);
+        }
       }
       return null;
     } catch (e) {
@@ -111,7 +129,11 @@ class ApiService {
       final response = await http.patch(
         Uri.parse('$baseUrl/tasks/$taskId/complete'),
       );
-      return response.statusCode == 200;
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = json.decode(response.body);
+        return responseData['success'] == true;
+      }
+      return false;
     } catch (e) {
       print('Error completing task: $e');
       return false;

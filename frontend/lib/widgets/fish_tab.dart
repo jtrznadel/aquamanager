@@ -103,13 +103,9 @@ class FishTab extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text('Gatunek: ${fish.species}'),
-                              Text('Ilość: ${fish.quantity}'),
-                              if (fish.notes?.isNotEmpty ?? false)
-                                Text(
-                                  'Notatki: ${fish.notes}',
-                                  style: const TextStyle(
-                                      fontStyle: FontStyle.italic),
-                                ),
+                              if (fish.age != null)
+                                Text('Wiek: ${fish.age} lat'),
+                              Text('Zdrowie: ${fish.health}'),
                             ],
                           ),
                           isThreeLine: true,

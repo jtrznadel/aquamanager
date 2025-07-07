@@ -19,19 +19,19 @@ class Task {
     return Task(
       id: json['id'],
       title: json['title'],
-      taskType: json['task_type'],
-      dueDate: DateTime.parse(json['due_date']),
-      isCompleted: json['is_completed'] ?? false,
-      aquariumId: json['aquarium_id'],
+      taskType: json['taskType'],
+      dueDate: DateTime.parse(json['dueDate']),
+      isCompleted: json['isCompleted'] ?? false,
+      aquariumId: json['aquariumId'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'title': title,
-      'task_type': taskType,
-      'due_date': dueDate.toIso8601String(),
-      'aquarium_id': aquariumId,
+      'taskType': taskType,
+      'dueDate': dueDate.toIso8601String(),
+      'aquariumId': aquariumId,
     };
   }
 }
