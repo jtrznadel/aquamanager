@@ -1,0 +1,25 @@
+version: 1.0
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.22.1-stable.tar.xz
+        - tar xf flutter_linux_3.22.1-stable.tar.xz
+        - export PATH=$PWD/flutter/bin:$PATH
+        - export PATH="$PWD/flutter/bin/cache/dart-sdk/bin:$PATH"
+        - flutter doctor
+        - cd frontend
+        - flutter pub get
+    build:
+      commands:
+        - export PATH=$PWD/flutter/bin:$PATH
+        - export PATH="$PWD/flutter/bin/cache/dart-sdk/bin:$PATH"
+        - cd frontend
+        - flutter build web --release
+  artifacts:
+    baseDirectory: frontend/build/web
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - frontend/.pub-cache
