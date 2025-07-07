@@ -1,6 +1,9 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
+// Import database initializer
+const DatabaseInitializer = require('./utils/database-initializer');
+
 // Database connection configuration
 const dbConfig = {
   user: process.env.DB_USER || 'postgres',
@@ -12,6 +15,9 @@ const dbConfig = {
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
+  ssl: {
+    rejectUnauthorized: false
+  }
 };
 
 // Create connection pool
@@ -544,13 +550,28 @@ app.use((req, res) => {
   });
 });
 
-// Start server
+// Start server with database initialization
 if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log(`🚀 AquaManager API server running on port ${PORT}`);
-    console.log(`📡 Health check: http://localhost:${PORT}/health`);
-    console.log(`📋 API info: http://localhost:${PORT}/api`);
-  });
+  const startServer = async () => {
+    try {
+      // Initialize database
+      const dbInitializer = new DatabaseInitializer(pool);
+      await dbInitializer.initialize();
+      
+      // Start server
+      app.listen(PORT, () => {
+        console.log(`🚀 AquaManager API server running on port ${PORT}`);
+        console.log(`📡 Health check: http://localhost:${PORT}/health`);
+        console.log(`📋 API info: http://localhost:${PORT}/api`);
+        console.log(`💾 Database: Connected to ${process.env.DB_HOST || 'localhost'}`);
+      });
+    } catch (error) {
+      console.error('❌ Failed to start server:', error);
+      process.exit(1);
+    }
+  };
+
+  startServer();
 }
 
 module.exports = app;
