@@ -74,7 +74,8 @@ class _DashboardScreenState extends State<DashboardScreen>
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryBlue),
+                valueColor:
+                    AlwaysStoppedAnimation<Color>(AppColors.primaryBlue),
               ),
             )
           : FadeTransition(
@@ -120,7 +121,6 @@ class _DashboardScreenState extends State<DashboardScreen>
                       ),
                     ),
                   ),
-
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsets.all(24.0),
@@ -259,11 +259,11 @@ class _DashboardScreenState extends State<DashboardScreen>
         children: [
           Container(
             padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.lightBlue,
               shape: BoxShape.circle,
             ),
-            child: Icon(
+            child: const Icon(
               Icons.water_drop_outlined,
               size: 64,
               color: AppColors.primaryBlue,

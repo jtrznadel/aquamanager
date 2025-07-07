@@ -21,7 +21,7 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
   late TabController _tabController;
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
-  
+
   List<Fish> fishList = [];
   List<Task> tasks = [];
   bool isLoading = true;
@@ -89,7 +89,8 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
     }
   }
 
-  Widget _buildCompactStatCard(String title, String value, IconData icon, Color color) {
+  Widget _buildCompactStatCard(
+      String title, String value, IconData icon, Color color) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -128,13 +129,14 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
   @override
   Widget build(BuildContext context) {
     final waterTypeColor = _getWaterTypeColor();
-    
+
     return Scaffold(
       backgroundColor: AppColors.surfaceLight,
       body: isLoading
           ? const Center(
               child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(AppColors.primaryBlue),
+                valueColor:
+                    AlwaysStoppedAnimation<Color>(AppColors.primaryBlue),
               ),
             )
           : FadeTransition(
@@ -182,7 +184,6 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                                 ),
                               ],
                             ),
-                            
                             Column(
                               children: [
                                 Text(
@@ -233,7 +234,6 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                       ),
                     ),
                   ),
-
                   Container(
                     color: Colors.white,
                     padding: const EdgeInsets.all(12),
@@ -257,7 +257,7 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                         _buildCompactStatCard(
                           'pH',
                           widget.aquarium.ph != null
-                              ? '${widget.aquarium.ph!.toStringAsFixed(1)}'
+                              ? widget.aquarium.ph!.toStringAsFixed(1)
                               : '--',
                           Icons.science,
                           AppColors.success,
@@ -271,7 +271,6 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                       ],
                     ),
                   ),
-
                   Container(
                     color: Colors.white,
                     child: TabBar(
@@ -300,7 +299,6 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                       ],
                     ),
                   ),
-
                   Expanded(
                     child: TabBarView(
                       controller: _tabController,
@@ -326,7 +324,8 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                             try {
                               await ApiService.completeTask(taskId);
                               setState(() {
-                                final taskIndex = tasks.indexWhere((t) => t.id == taskId);
+                                final taskIndex =
+                                    tasks.indexWhere((t) => t.id == taskId);
                                 if (taskIndex != -1) {
                                   tasks[taskIndex] = Task(
                                     id: tasks[taskIndex].id,
@@ -340,7 +339,9 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                               });
                             } catch (e) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Błąd przy aktualizacji zadania: $e')),
+                                SnackBar(
+                                    content: Text(
+                                        'Błąd przy aktualizacji zadania: $e')),
                               );
                             }
                           },
@@ -396,7 +397,8 @@ class ParametersTab extends StatelessWidget {
     );
   }
 
-  Widget _buildParameterCard(String title, String value, String unit, IconData icon, Color color) {
+  Widget _buildParameterCard(
+      String title, String value, String unit, IconData icon, Color color) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(

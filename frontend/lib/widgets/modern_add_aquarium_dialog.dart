@@ -9,7 +9,8 @@ class ModernAddAquariumDialog extends StatefulWidget {
   const ModernAddAquariumDialog({super.key, required this.onAquariumAdded});
 
   @override
-  _ModernAddAquariumDialogState createState() => _ModernAddAquariumDialogState();
+  _ModernAddAquariumDialogState createState() =>
+      _ModernAddAquariumDialogState();
 }
 
 class _ModernAddAquariumDialogState extends State<ModernAddAquariumDialog>
@@ -61,11 +62,11 @@ class _ModernAddAquariumDialogState extends State<ModernAddAquariumDialog>
       name: _nameController.text,
       capacity: double.parse(_capacityController.text),
       waterType: _selectedWaterType,
-      temperature: _temperatureController.text.isNotEmpty 
-          ? double.parse(_temperatureController.text) 
+      temperature: _temperatureController.text.isNotEmpty
+          ? double.parse(_temperatureController.text)
           : null,
-      ph: _phController.text.isNotEmpty 
-          ? double.parse(_phController.text) 
+      ph: _phController.text.isNotEmpty
+          ? double.parse(_phController.text)
           : null,
     );
 
@@ -77,8 +78,8 @@ class _ModernAddAquariumDialogState extends State<ModernAddAquariumDialog>
       Navigator.pop(context);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('Błąd podczas dodawania akwarium'),
+        const SnackBar(
+          content: Text('Błąd podczas dodawania akwarium'),
           backgroundColor: AppColors.error,
         ),
       );
@@ -290,7 +291,8 @@ class _ModernAddAquariumDialogState extends State<ModernAddAquariumDialog>
                               children: [
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Pojemność (L)',
@@ -328,7 +330,8 @@ class _ModernAddAquariumDialogState extends State<ModernAddAquariumDialog>
                                 const SizedBox(width: 16),
                                 Expanded(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Temperatura (°C)',
@@ -387,10 +390,14 @@ class _ModernAddAquariumDialogState extends State<ModernAddAquariumDialog>
                               children: [
                                 Expanded(
                                   child: OutlinedButton(
-                                    onPressed: isLoading ? null : () => Navigator.pop(context),
+                                    onPressed: isLoading
+                                        ? null
+                                        : () => Navigator.pop(context),
                                     style: OutlinedButton.styleFrom(
-                                      padding: const EdgeInsets.symmetric(vertical: 16),
-                                      side: BorderSide(color: _getWaterTypeColor()),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 16),
+                                      side: BorderSide(
+                                          color: _getWaterTypeColor()),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(12),
                                       ),
@@ -423,9 +430,11 @@ class _ModernAddAquariumDialogState extends State<ModernAddAquariumDialog>
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: Colors.transparent,
                                         shadowColor: Colors.transparent,
-                                        padding: const EdgeInsets.symmetric(vertical: 16),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 16),
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(12),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                         ),
                                       ),
                                       child: isLoading
@@ -434,7 +443,9 @@ class _ModernAddAquariumDialogState extends State<ModernAddAquariumDialog>
                                               height: 20,
                                               child: CircularProgressIndicator(
                                                 strokeWidth: 2,
-                                                valueColor: AlwaysStoppedAnimation<Color>(
+                                                valueColor:
+                                                    AlwaysStoppedAnimation<
+                                                        Color>(
                                                   Colors.white,
                                                 ),
                                               ),
@@ -465,9 +476,10 @@ class _ModernAddAquariumDialogState extends State<ModernAddAquariumDialog>
     );
   }
 
-  Widget _buildWaterTypeButton(String type, String label, String emoji, Color color) {
+  Widget _buildWaterTypeButton(
+      String type, String label, String emoji, Color color) {
     final isSelected = _selectedWaterType == type;
-    
+
     return GestureDetector(
       onTap: () {
         setState(() {

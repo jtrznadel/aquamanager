@@ -41,7 +41,9 @@ class _AddFishDialogState extends State<AddFishDialog> {
       name: _nameController.text,
       species: _speciesController.text,
       aquariumId: widget.aquariumId,
-      age: _ageController.text.isEmpty ? null : int.tryParse(_ageController.text),
+      age: _ageController.text.isEmpty
+          ? null
+          : int.tryParse(_ageController.text),
       health: _selectedHealth,
     );
 
@@ -130,7 +132,8 @@ class _AddFishDialogState extends State<AddFishDialog> {
                   DropdownMenuItem(value: 'poor', child: Text('Słaby')),
                   DropdownMenuItem(value: 'fair', child: Text('Przeciętny')),
                   DropdownMenuItem(value: 'good', child: Text('Dobry')),
-                  DropdownMenuItem(value: 'excellent', child: Text('Doskonały')),
+                  DropdownMenuItem(
+                      value: 'excellent', child: Text('Doskonały')),
                 ],
                 onChanged: (String? newValue) {
                   if (newValue != null) {

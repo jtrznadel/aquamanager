@@ -64,14 +64,14 @@ class CompactFishTab extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   ),
                 ),
               ),
             ],
           ),
         ),
-
         Expanded(
           child: fishList.isEmpty
               ? _buildEmptyState()
@@ -95,11 +95,11 @@ class CompactFishTab extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.lightBlue,
               shape: BoxShape.circle,
             ),
-            child: Icon(
+            child: const Icon(
               Icons.pets,
               size: 40,
               color: AppColors.primaryBlue,
@@ -115,7 +115,7 @@ class CompactFishTab extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          Text(
+          const Text(
             'Dodaj swoje pierwsze rybki!',
             style: TextStyle(
               fontSize: 12,
@@ -151,7 +151,7 @@ class CompactFishTab extends StatelessWidget {
               color: AppColors.accentTeal.withOpacity(0.1),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Icon(
+            child: const Icon(
               Icons.pets,
               color: AppColors.accentTeal,
               size: 16,

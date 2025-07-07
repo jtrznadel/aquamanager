@@ -94,7 +94,8 @@ class ModernAquariumCard extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 child: Row(
                   children: [
                     Expanded(
@@ -124,7 +125,6 @@ class ModernAquariumCard extends StatelessWidget {
                 ),
               ),
             ),
-
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(12),
@@ -166,14 +166,13 @@ class ModernAquariumCard extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 8),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.pets,
                               size: 14,
                               color: AppColors.textSecondary,
@@ -193,7 +192,7 @@ class ModernAquariumCard extends StatelessWidget {
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.thermostat,
                                 size: 14,
                                 color: AppColors.textSecondary,
@@ -212,7 +211,7 @@ class ModernAquariumCard extends StatelessWidget {
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.science,
                                 size: 14,
                                 color: AppColors.textSecondary,
@@ -229,9 +228,7 @@ class ModernAquariumCard extends StatelessWidget {
                           ),
                       ],
                     ),
-
                     const Spacer(),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [

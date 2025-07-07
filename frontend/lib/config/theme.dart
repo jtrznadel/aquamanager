@@ -6,21 +6,21 @@ class AppColors {
   static const Color accentTeal = Color(0xFF06B6D4);
   static const Color lightBlue = Color(0xFFE0F2FE);
   static const Color darkBlue = Color(0xFF1E40AF);
-  
+
   static const Color success = Color(0xFF10B981);
   static const Color warning = Color(0xFFF59E0B);
   static const Color error = Color(0xFFEF4444);
   static const Color info = Color(0xFF3B82F6);
-  
+
   static const Color surfaceLight = Color(0xFFF8FAFC);
   static const Color surfaceDark = Color(0xFF1E293B);
   static const Color cardLight = Color(0xFFFFFFFF);
   static const Color cardDark = Color(0xFF334155);
-  
+
   static const Color textPrimary = Color(0xFF1E293B);
   static const Color textSecondary = Color(0xFF64748B);
   static const Color textLight = Color(0xFF94A3B8);
-  
+
   static const Color gradientStart = Color(0xFF1E3A8A);
   static const Color gradientEnd = Color(0xFF06B6D4);
 }
@@ -39,12 +39,10 @@ class AppTheme {
         onTertiary: Colors.white,
         surface: AppColors.surfaceLight,
         onSurface: AppColors.textPrimary,
-        background: AppColors.surfaceLight,
-        onBackground: AppColors.textPrimary,
         error: AppColors.error,
         onError: Colors.white,
       ),
-      
+
       // App Bar Theme
       appBarTheme: const AppBarTheme(
         backgroundColor: Colors.transparent,
@@ -57,7 +55,7 @@ class AppTheme {
           color: AppColors.textPrimary,
         ),
       ),
-      
+
       // Card Theme
       cardTheme: CardThemeData(
         color: AppColors.cardLight,
@@ -71,7 +69,7 @@ class AppTheme {
         ),
         shadowColor: Colors.transparent,
       ),
-      
+
       // Elevated Button Theme
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -88,7 +86,7 @@ class AppTheme {
           ),
         ),
       ),
-      
+
       // Input Decoration Theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -109,9 +107,10 @@ class AppTheme {
           borderRadius: BorderRadius.circular(12),
           borderSide: const BorderSide(color: AppColors.error, width: 2),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       ),
-      
+
       // Text Theme
       textTheme: const TextTheme(
         headlineLarge: TextStyle(
@@ -160,7 +159,7 @@ class AppTheme {
           color: AppColors.textLight,
         ),
       ),
-      
+
       // Floating Action Button Theme
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: AppColors.primaryBlue,
@@ -168,7 +167,7 @@ class AppTheme {
         elevation: 8,
         shape: CircleBorder(),
       ),
-      
+
       // Bottom Navigation Bar Theme
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColors.cardLight,
@@ -188,19 +187,19 @@ class AppGradients {
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
-  
+
   static const LinearGradient cardGradient = LinearGradient(
     colors: [Colors.white, AppColors.lightBlue],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
-  
+
   static const LinearGradient successGradient = LinearGradient(
     colors: [AppColors.success, Color(0xFF34D399)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
-  
+
   static const LinearGradient warningGradient = LinearGradient(
     colors: [AppColors.warning, Color(0xFFFBBF24)],
     begin: Alignment.topLeft,

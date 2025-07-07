@@ -70,14 +70,14 @@ class CompactCalendarTab extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   ),
                 ),
               ),
             ],
           ),
         ),
-
         Expanded(
           child: tasks.isEmpty
               ? _buildEmptyState()
@@ -85,15 +85,19 @@ class CompactCalendarTab extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   children: [
                     if (pendingTasks.isNotEmpty) ...[
-                      _buildSectionHeader('Do zrobienia', pendingTasks.length, AppColors.warning),
+                      _buildSectionHeader('Do zrobienia', pendingTasks.length,
+                          AppColors.warning),
                       const SizedBox(height: 8),
-                      ...pendingTasks.map((task) => _buildCompactTaskCard(task, false)),
+                      ...pendingTasks
+                          .map((task) => _buildCompactTaskCard(task, false)),
                       const SizedBox(height: 16),
                     ],
                     if (completedTasks.isNotEmpty) ...[
-                      _buildSectionHeader('Ukończone', completedTasks.length, AppColors.success),
+                      _buildSectionHeader('Ukończone', completedTasks.length,
+                          AppColors.success),
                       const SizedBox(height: 8),
-                      ...completedTasks.map((task) => _buildCompactTaskCard(task, true)),
+                      ...completedTasks
+                          .map((task) => _buildCompactTaskCard(task, true)),
                     ],
                   ],
                 ),
@@ -109,11 +113,11 @@ class CompactCalendarTab extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.lightBlue,
               shape: BoxShape.circle,
             ),
-            child: Icon(
+            child: const Icon(
               Icons.task_alt,
               size: 40,
               color: AppColors.primaryBlue,
@@ -129,7 +133,7 @@ class CompactCalendarTab extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 4),
-          Text(
+          const Text(
             'Dodaj pierwsze zadanie dla akwarium!',
             style: TextStyle(
               fontSize: 12,
@@ -168,7 +172,7 @@ class CompactCalendarTab extends StatelessWidget {
   Widget _buildCompactTaskCard(Task task, bool isCompleted) {
     final isOverdue = !isCompleted && task.dueDate.isBefore(DateTime.now());
     final daysDiff = task.dueDate.difference(DateTime.now()).inDays;
-    
+
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(12),
@@ -215,7 +219,9 @@ class CompactCalendarTab extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: isCompleted ? AppColors.textSecondary : AppColors.textPrimary,
+                    color: isCompleted
+                        ? AppColors.textSecondary
+                        : AppColors.textPrimary,
                     decoration: isCompleted ? TextDecoration.lineThrough : null,
                   ),
                 ),
@@ -241,7 +247,7 @@ class CompactCalendarTab extends StatelessWidget {
                       color: AppColors.success.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(6),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.check,
                       color: AppColors.success,
                       size: 14,

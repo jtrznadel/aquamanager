@@ -31,9 +31,8 @@ class Aquarium {
       ph: _parseDouble(json['ph']),
       fishCount: json['fishCount'] ?? 0,
       status: json['status'] ?? 'healthy',
-      createdAt: json['createdAt'] != null
-          ? DateTime.parse(json['createdAt'])
-          : null,
+      createdAt:
+          json['createdAt'] != null ? DateTime.parse(json['createdAt']) : null,
     );
   }
 
