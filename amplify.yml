@@ -3,11 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        - curl -o flutter_linux_3.24.3-stable.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.24.3-stable.tar.xz
-        - tar xf flutter_linux_3.24.3-stable.tar.xz
+        - git clone https://github.com/flutter/flutter.git -b stable --depth 1
         - export PATH=$PWD/flutter/bin:$PATH
         - export PATH="$PWD/flutter/bin/cache/dart-sdk/bin:$PATH"
-        - flutter doctor
+        - flutter doctor -v
+        - flutter config --enable-web
         - cd frontend
         - flutter pub get
     build:
@@ -23,3 +23,4 @@ frontend:
   cache:
     paths:
       - frontend/.pub-cache
+      - flutter
