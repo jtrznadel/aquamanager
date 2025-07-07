@@ -30,7 +30,6 @@ class CompactFishTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Compact Header
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
@@ -73,7 +72,6 @@ class CompactFishTab extends StatelessWidget {
           ),
         ),
 
-        // Fish List
         Expanded(
           child: fishList.isEmpty
               ? _buildEmptyState()

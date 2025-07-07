@@ -77,7 +77,6 @@ class ModernAquariumCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            // Compact header
             Container(
               height: 50,
               decoration: BoxDecoration(
@@ -126,13 +125,11 @@ class ModernAquariumCard extends StatelessWidget {
               ),
             ),
 
-            // Compact content
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(12),
                 child: Column(
                   children: [
-                    // Top row: capacity and status
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -170,7 +167,6 @@ class ModernAquariumCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
 
-                    // Middle row: fish count and parameters
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -236,7 +232,6 @@ class ModernAquariumCard extends StatelessWidget {
 
                     const Spacer(),
 
-                    // Bottom action
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [

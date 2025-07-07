@@ -81,7 +81,6 @@ class _DashboardScreenState extends State<DashboardScreen>
               opacity: _fadeAnimation,
               child: CustomScrollView(
                 slivers: [
-                  // Modern App Bar
                   SliverAppBar(
                     expandedHeight: 120,
                     floating: false,
@@ -122,14 +121,12 @@ class _DashboardScreenState extends State<DashboardScreen>
                     ),
                   ),
 
-                  // Content
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsets.all(24.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Welcome section
                           Row(
                             children: [
                               Expanded(
@@ -174,7 +171,6 @@ class _DashboardScreenState extends State<DashboardScreen>
                           ),
                           const SizedBox(height: 32),
 
-                          // Statistics Cards
                           Row(
                             children: [
                               Expanded(
@@ -210,7 +206,6 @@ class _DashboardScreenState extends State<DashboardScreen>
                           ),
                           const SizedBox(height: 32),
 
-                          // Header with Add Button
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

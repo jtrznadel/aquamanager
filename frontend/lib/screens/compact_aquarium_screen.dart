@@ -141,7 +141,6 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
               opacity: _fadeAnimation,
               child: Column(
                 children: [
-                  // Compact Header
                   Container(
                     height: 140,
                     decoration: BoxDecoration(
@@ -160,7 +159,6 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            // Top row with back button
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -185,7 +183,6 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                               ],
                             ),
                             
-                            // Aquarium info
                             Column(
                               children: [
                                 Text(
@@ -237,7 +234,6 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                     ),
                   ),
 
-                  // Compact Stats Row
                   Container(
                     color: Colors.white,
                     padding: const EdgeInsets.all(12),
@@ -276,7 +272,6 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                     ),
                   ),
 
-                  // Compact Tab Bar
                   Container(
                     color: Colors.white,
                     child: TabBar(
@@ -306,7 +301,6 @@ class _CompactAquariumScreenState extends State<CompactAquariumScreen>
                     ),
                   ),
 
-                  // Tab Content
                   Expanded(
                     child: TabBarView(
                       controller: _tabController,

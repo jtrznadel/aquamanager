@@ -36,7 +36,6 @@ class CompactCalendarTab extends StatelessWidget {
 
     return Column(
       children: [
-        // Compact Header
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
@@ -79,7 +78,6 @@ class CompactCalendarTab extends StatelessWidget {
           ),
         ),
 
-        // Task Lists
         Expanded(
           child: tasks.isEmpty
               ? _buildEmptyState()
