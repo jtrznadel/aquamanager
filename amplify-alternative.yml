@@ -1,0 +1,27 @@
+version: 1.0
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Installing Flutter via Git (faster alternative)..."
+        - git clone https://github.com/flutter/flutter.git -b stable --depth 1
+        - export PATH=$PWD/flutter/bin:$PATH
+        - export PATH="$PWD/flutter/bin/cache/dart-sdk/bin:$PATH"
+        - flutter doctor -v
+        - flutter config --enable-web
+        - cd frontend
+        - flutter pub get
+    build:
+      commands:
+        - export PATH=$PWD/flutter/bin:$PATH
+        - export PATH="$PWD/flutter/bin/cache/dart-sdk/bin:$PATH"
+        - cd frontend
+        - flutter build web --release
+  artifacts:
+    baseDirectory: frontend/build/web
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - frontend/.pub-cache
+      - flutter

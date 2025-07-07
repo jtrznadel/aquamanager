@@ -3,6 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
+        - echo "Cleaning up previous Flutter installation..."
+        - rm -rf flutter
         - echo "Installing Flutter via Git..."
         - git clone https://github.com/flutter/flutter.git -b stable --depth 1
         - export PATH=$PWD/flutter/bin:$PATH
