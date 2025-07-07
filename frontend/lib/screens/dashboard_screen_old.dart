@@ -1,8 +1,8 @@
 import 'package:aquamanager_frontend/config/theme.dart';
 import 'package:aquamanager_frontend/models/aquarium.dart';
-import 'package:aquamanager_frontend/screens/compact_aquarium_screen.dart';
+import 'package:aquamanager_frontend/screens/aquarium_screen.dart';
 import 'package:aquamanager_frontend/services/api_service.dart';
-import 'package:aquamanager_frontend/widgets/modern_add_aquarium_dialog.dart';
+import 'package:aquamanager_frontend/widgets/add_aquarium_dialog.dart';
 import 'package:aquamanager_frontend/widgets/modern_aquarium_card.dart';
 import 'package:aquamanager_frontend/widgets/stats_card.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +57,7 @@ class _DashboardScreenState extends State<DashboardScreen>
   void _showAddAquariumDialog() {
     showDialog(
       context: context,
-      builder: (context) => ModernAddAquariumDialog(
+      builder: (context) => AddAquariumDialog(
         onAquariumAdded: (newAquarium) {
           setState(() {
             aquariums.add(newAquarium);
@@ -301,44 +301,99 @@ class _DashboardScreenState extends State<DashboardScreen>
   }
 
   Widget _buildAquariumsGrid() {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        // Responsive grid columns based on screen width
-        int crossAxisCount = 2;
-        if (constraints.maxWidth > 600) {
-          crossAxisCount = 3;
-        }
-        if (constraints.maxWidth > 900) {
-          crossAxisCount = 4;
-        }
-
-        return GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: crossAxisCount,
-            childAspectRatio: 1.4, // Compact ratio for new design
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-          ),
-          itemCount: aquariums.length,
-          itemBuilder: (context, index) {
-            return ModernAquariumCard(
-              aquarium: aquariums[index],
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CompactAquariumScreen(
-                      aquarium: aquariums[index],
-                    ),
-                  ),
-                );
-              },
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 0.85,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+      ),
+      itemCount: aquariums.length,
+      itemBuilder: (context, index) {
+        return ModernAquariumCard(
+          aquarium: aquariums[index],
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AquariumScreen(
+                  aquarium: aquariums[index],
+                ),
+              ),
             );
           },
         );
       },
+    );
+  }
+}
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Aquarium Grid
+                  Expanded(
+                    child: aquariums.isEmpty
+                        ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.water_drop,
+                                  size: 64,
+                                  color: Colors.grey[400],
+                                ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  'Brak akwariów',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                                Text(
+                                  'Dodaj swoje pierwsze akwarium!',
+                                  style: TextStyle(
+                                    color: Colors.grey[500],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount:
+                                  MediaQuery.of(context).size.width > 800
+                                      ? 3
+                                      : 2,
+                              childAspectRatio: 1.2,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                            ),
+                            itemCount: aquariums.length,
+                            itemBuilder: (context, index) {
+                              final aquarium = aquariums[index];
+                              return AquariumCard(
+                                aquarium: aquarium,
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          AquariumScreen(aquarium: aquarium),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                  ),
+                ],
+              ),
+            ),
     );
   }
 }

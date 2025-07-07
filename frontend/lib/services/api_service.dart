@@ -6,7 +6,7 @@ import 'package:aquamanager_frontend/models/task.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  static const String baseUrl = 'http://localhost:3000/api';
+  static const String baseUrl = 'http://localhost:3001/api';
 
   // Aquarium endpoints
   static Future<List<Aquarium>> getAquariums() async {
