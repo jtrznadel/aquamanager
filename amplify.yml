@@ -8,14 +8,12 @@ frontend:
         - export PATH="$PWD/flutter/bin/cache/dart-sdk/bin:$PATH"
         - flutter doctor -v
         - flutter config --enable-web
-        - cd frontend
-        - flutter pub get
+        - cd frontend && flutter pub get
     build:
       commands:
         - export PATH=$PWD/flutter/bin:$PATH
         - export PATH="$PWD/flutter/bin/cache/dart-sdk/bin:$PATH"
-        - cd frontend
-        - flutter build web --release
+        - cd frontend && flutter build web --release
   artifacts:
     baseDirectory: frontend/build/web
     files:
