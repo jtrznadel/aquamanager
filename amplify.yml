@@ -3,9 +3,8 @@ frontend:
   phases:
     preBuild:
       commands:
-        - dnf install -y xz
-        - wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.22.1-stable.tar.xz
-        - tar xf flutter_linux_3.22.1-stable.tar.xz
+        - curl -o flutter_linux_3.24.3-stable.tar.xz https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_3.24.3-stable.tar.xz
+        - tar xf flutter_linux_3.24.3-stable.tar.xz
         - export PATH=$PWD/flutter/bin:$PATH
         - export PATH="$PWD/flutter/bin/cache/dart-sdk/bin:$PATH"
         - flutter doctor
