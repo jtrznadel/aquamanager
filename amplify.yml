@@ -12,15 +12,9 @@ frontend:
         - cd frontend && flutter pub get
     build:
       commands:
-        - echo "Current directory:"
-        - pwd
-        - echo "Directory contents:"
-        - ls -la
-        - export PATH=$PWD/flutter/bin:$PATH
-        - export PATH="$PWD/flutter/bin/cache/dart-sdk/bin:$PATH"
-        - echo "Looking for frontend directory..."
-        - find . -name "frontend" -type d
-        - cd ./frontend && flutter build web --release
+        - export PATH=$PWD/../flutter/bin:$PATH
+        - export PATH="$PWD/../flutter/bin/cache/dart-sdk/bin:$PATH"
+        - flutter build web --release
   artifacts:
     baseDirectory: frontend/build/web
     files:
